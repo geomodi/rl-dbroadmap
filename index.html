@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repair Lift Dashboard Roadmap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/roadmap.css">
+    <link rel="stylesheet" href="styles/binary-timeline.css">
+    <link rel="stylesheet" href="styles/terminal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body class="cyber-theme">
+    <div class="tech-grid-bg"></div>
+    <div class="particles-container"></div>
+
+    <header class="cyber-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="title-container">
+                    <svg class="title-svg" viewBox="0 0 800 60" width="100%" height="60" preserveAspectRatio="xMidYMid meet">
+                        <!-- Definitions for filters and gradients -->
+                        <defs>
+                            <!-- Enhanced glow filter -->
+                            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="2" result="blur1" />
+                                <feGaussianBlur stdDeviation="4" result="blur2" />
+                                <feComposite in="SourceGraphic" in2="blur1" operator="over" result="comp1" />
+                                <feComposite in="comp1" in2="blur2" operator="over" />
+                            </filter>
+
+                            <!-- Traveling light gradient for dark mode -->
+                            <linearGradient id="traveling-light" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="rgba(0, 243, 255, 0)" />
+                                <stop offset="45%" stop-color="rgba(0, 243, 255, 0.1)" />
+                                <stop offset="48%" stop-color="rgba(0, 243, 255, 0.3)" />
+                                <stop offset="49%" stop-color="rgba(0, 243, 255, 0.7)" />
+                                <stop offset="50%" stop-color="rgba(255, 255, 255, 1)" />
+                                <stop offset="51%" stop-color="rgba(0, 243, 255, 0.7)" />
+                                <stop offset="52%" stop-color="rgba(0, 243, 255, 0.3)" />
+                                <stop offset="55%" stop-color="rgba(0, 243, 255, 0.1)" />
+                                <stop offset="100%" stop-color="rgba(0, 243, 255, 0)" />
+                            </linearGradient>
+
+                            <!-- Traveling light gradient for light mode -->
+                            <linearGradient id="traveling-light-light" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="rgba(0, 119, 204, 0)" />
+                                <stop offset="45%" stop-color="rgba(0, 119, 204, 0.1)" />
+                                <stop offset="48%" stop-color="rgba(0, 119, 204, 0.3)" />
+                                <stop offset="49%" stop-color="rgba(0, 119, 204, 0.7)" />
+                                <stop offset="50%" stop-color="rgba(255, 255, 255, 1)" />
+                                <stop offset="51%" stop-color="rgba(0, 119, 204, 0.7)" />
+                                <stop offset="52%" stop-color="rgba(0, 119, 204, 0.3)" />
+                                <stop offset="55%" stop-color="rgba(0, 119, 204, 0.1)" />
+                                <stop offset="100%" stop-color="rgba(0, 119, 204, 0)" />
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Base text with glow - combined title (centered) -->
+                        <text x="50%" y="45" text-anchor="middle" class="title-text-base">Repair Lift Dashboard Roadmap</text>
+
+                        <!-- Traveling light overlay - combined title (centered) -->
+                        <text x="50%" y="45" text-anchor="middle" class="title-text-light">Repair Lift Dashboard Roadmap</text>
+                    </svg>
+                    <div class="utility-controls">
+                        <button id="theme-toggle" class="cyber-button utility-button compact" title="Toggle Theme">
+                            <span class="button-icon mode-icon">
+                                <svg class="icon-svg theme-icon" viewBox="0 0 24 24">
+                                    <!-- Moon icon for dark mode -->
+                                    <path class="moon-icon" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
+                                    <!-- Sun icon for light mode -->
+                                    <g class="sun-icon" style="display: none;">
+                                        <circle cx="12" cy="12" r="5" />
+                                        <line x1="12" y1="3" x2="12" y2="5" />
+                                        <line x1="12" y1="19" x2="12" y2="21" />
+                                        <line x1="5" y1="12" x2="3" y2="12" />
+                                        <line x1="21" y1="12" x2="19" y2="12" />
+                                        <line x1="7.05" y1="7.05" x2="5.64" y2="5.64" />
+                                        <line x1="18.36" y1="18.36" x2="16.95" y2="16.95" />
+                                        <line x1="7.05" y1="16.95" x2="5.64" y2="18.36" />
+                                        <line x1="18.36" y1="5.64" x2="16.95" y2="7.05" />
+                                    </g>
+                                </svg>
+                            </span>
+                        </button>
+                        <button id="team-view-toggle" class="cyber-button utility-button compact" title="Toggle Team View">
+                            <span class="button-icon">
+                                <svg class="icon-svg team-icon" viewBox="0 0 24 24">
+                                    <circle cx="9" cy="8" r="4" />
+                                    <path d="M3 18c0-3 3-5 6-5s6 2 6 5" />
+                                    <circle cx="17" cy="8" r="3" />
+                                    <path d="M15 15c2 0 4 1 4 3" />
+                                </svg>
+                            </span>
+                        </button>
+                        <button id="terminal-toggle" class="cyber-button utility-button compact" title="Toggle Terminal">
+                            <span class="button-icon">
+                                <svg class="icon-svg terminal-icon" viewBox="0 0 24 24">
+                                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                                    <line x1="6" y1="10" x2="10" y2="14" />
+                                    <line x1="10" y1="10" x2="6" y2="14" />
+                                    <line x1="13" y1="16" x2="18" y2="16" />
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="header-controls">
+                    <!-- Binary Sequence Timeline -->
+                    <div class="binary-timeline">
+                        <!-- Matrix line (background line) -->
+                        <div class="matrix-line"></div>
+
+                        <!-- Progress line (foreground line) -->
+                        <div class="progress-line"></div>
+
+                        <!-- Matrix code (binary numbers) -->
+                        <div class="matrix-code">
+                            <div class="code-char">01</div>
+                            <div class="code-char">10</div>
+                            <div class="code-char">11</div>
+                            <div class="code-char">00</div>
+                            <div class="code-char">01</div>
+                            <div class="code-char">10</div>
+                            <div class="code-char">11</div>
+                            <div class="code-char">00</div>
+                            <div class="code-char">01</div>
+                            <div class="code-char">10</div>
+                        </div>
+
+                        <!-- Timeline nodes -->
+                        <div class="node" data-date="2025-04-28">
+                            <div class="matrix-dot">
+                                <div class="matrix-box"></div>
+                                <div class="matrix-inner"></div>
+                            </div>
+                            <div class="month">Apr 28</div>
+                        </div>
+                        <div class="node" data-date="2025-05-04">
+                            <div class="matrix-dot">
+                                <div class="matrix-box"></div>
+                                <div class="matrix-inner"></div>
+                            </div>
+                            <div class="month">May 4</div>
+                        </div>
+                        <div class="node" data-date="2025-05-18">
+                            <div class="matrix-dot">
+                                <div class="matrix-box"></div>
+                                <div class="matrix-inner"></div>
+                            </div>
+                            <div class="month">May 18</div>
+                        </div>
+                        <div class="node" data-date="2025-05-25">
+                            <div class="matrix-dot">
+                                <div class="matrix-box"></div>
+                                <div class="matrix-inner"></div>
+                            </div>
+                            <div class="month">May 25</div>
+                        </div>
+                        <div class="node" data-date="2025-06-01">
+                            <div class="matrix-dot">
+                                <div class="matrix-box"></div>
+                                <div class="matrix-inner"></div>
+                            </div>
+                            <div class="month">Jun 1</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="roadmap-container">
+
+        <div class="timeline-track">
+
+            <!-- Phase 1: Data Structure Review -->
+            <section id="phase1" class="timeline-phase" data-start-date="2025-04-28" data-end-date="2025-04-28">
+                <!-- Progress indicator moved inside card -->
+                <div class="cyber-card phase-card" data-aos="fade-up">
+                    <div class="phase-header">
+                        <div class="phase-title-container">
+                            <h2 class="phase-title">Phase 1: Dashboard Roadmap Creation</h2>
+                            <button class="expand-details-btn">Details +</button>
+                        </div>
+                        <div class="phase-time-container">
+                            <div class="phase-time">April 28</div>
+                            <div class="phase-dates">April 28, 2025</div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span class="progress-percentage">100%</span>
+                            <span class="progress-status">Completed</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="100"></div>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <div class="task-section">
+                            <h3 class="section-title">Tasks</h3>
+                            <ul class="task-list">
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Review existing data structure</span>
+                                    <span class="task-status completed">Completed</span>
+                                </li>
+                                <li class="task-item" data-assignee="santiago">
+                                    <span class="task-text">Analyze data sources and formats</span>
+                                    <span class="task-status completed">Completed</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Dashboard roadmap created</span>
+                                    <span class="task-status completed">Completed</span>
+                                </li>
+                                <li class="task-item" data-assignee="santiago">
+                                    <span class="task-text">Identify optimization opportunities</span>
+                                    <span class="task-status completed">Completed</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="phase-details hidden">
+                            <h3 class="section-title">Phase Details</h3>
+                            <p>This initial phase focuses on creating the dashboard roadmap website. We'll review the data structure, optimize data flows, identify scripting opportunities, and implement the roadmap visualization.</p>
+                            <h4>Deliverables:</h4>
+                            <ul>
+                                <li>Roadmap website</li>
+                            </ul>
+                        </div>
+                        <div class="team-allocation hidden">
+                            <h3 class="section-title">Team Allocation</h3>
+                            <div class="team-members">
+                                <div class="team-member" data-member="alex">
+                                    <div class="member-avatar">AC</div>
+                                    <div class="member-info">
+                                        <div class="member-name">Alex Castro</div>
+                                        <div class="member-role">Project Manager, Developer, Data Architect</div>
+                                    </div>
+                                </div>
+                                <div class="team-member" data-member="santiago">
+                                    <div class="member-avatar">SG</div>
+                                    <div class="member-info">
+                                        <div class="member-name">Santiago Garcia</div>
+                                        <div class="member-role">Automations Expert</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dependency-arrow" data-connects="phase1-phase2">
+                    <div class="arrow-container">
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 2: Attribution System Code Review -->
+            <section id="phase2" class="timeline-phase" data-start-date="2025-05-04" data-end-date="2025-05-04">
+                <!-- Progress indicator moved inside card -->
+                <div class="cyber-card phase-card" data-aos="fade-up">
+                    <div class="phase-header">
+                        <div class="phase-title-container">
+                            <h2 class="phase-title">Phase 2: Understand Attribution Code, Build MVP Dashboard</h2>
+                            <button class="expand-details-btn">Details +</button>
+                        </div>
+                        <div class="phase-time-container">
+                            <div class="phase-time">May 4</div>
+                            <div class="phase-dates">May 4, 2025</div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span class="progress-percentage">50%</span>
+                            <span class="progress-status">In Progress</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="50"></div>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <div class="task-section">
+                            <h3 class="section-title">Tasks</h3>
+                            <ul class="task-list">
+                                <li class="task-item" data-assignee="santiago">
+                                    <span class="task-text">Review attribution system code</span>
+                                    <span class="task-status in-progress">In Progress</span>
+                                </li>
+                                <li class="task-item" data-assignee="santiago">
+                                    <span class="task-text">Analyze tracking mechanisms</span>
+                                    <span class="task-status in-progress">In Progress</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Build MVP dashboard with leads report</span>
+                                    <span class="task-status in-progress">In Progress</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Implement AI chat with data functionality</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="phase-details hidden">
+                            <h3 class="section-title">Phase Details</h3>
+                            <p>In this phase, we'll understand the attribution code and build an MVP dashboard website. The dashboard will include a leads report with the ability to select date ranges and time periods. We'll also implement AI functionality to allow users to chat with their data.</p>
+                            <h4>Deliverables:</h4>
+                            <ul>
+                                <li>MVP dashboard website</li>
+                            </ul>
+                        </div>
+                        <div class="team-allocation hidden">
+                            <h3 class="section-title">Team Allocation</h3>
+                            <div class="team-members">
+                                <div class="team-member" data-member="alex">
+                                    <div class="member-avatar">AC</div>
+                                    <div class="member-info">
+                                        <div class="member-name">Alex Castro</div>
+                                        <div class="member-role">Project Manager, Developer, Data Architect</div>
+                                    </div>
+                                </div>
+                                <div class="team-member" data-member="santiago">
+                                    <div class="member-avatar">SG</div>
+                                    <div class="member-info">
+                                        <div class="member-name">Santiago Garcia</div>
+                                        <div class="member-role">Automations Expert</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dependency-arrow" data-connects="phase2-phase3">
+                    <div class="arrow-container">
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 3: Lead Report Development -->
+            <section id="phase3" class="timeline-phase" data-start-date="2025-05-18" data-end-date="2025-05-18">
+                <!-- Progress indicator moved inside card -->
+                <div class="cyber-card phase-card" data-aos="fade-up">
+                    <div class="phase-header">
+                        <div class="phase-title-container">
+                            <h2 class="phase-title">Phase 3: Lead Report & Process Automation</h2>
+                            <button class="expand-details-btn">Details +</button>
+                        </div>
+                        <div class="phase-time-container">
+                            <div class="phase-time">May 18</div>
+                            <div class="phase-dates">May 18, 2025</div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span class="progress-percentage">10%</span>
+                            <span class="progress-status">Planning</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="10"></div>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <div class="task-section">
+                            <h3 class="section-title">Tasks</h3>
+                            <ul class="task-list">
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Develop lead volume metrics</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Develop integrations for Google Ads and Meta Ads spend</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Build cost analysis components</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Implement validation & process automation scripts</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Develop data analysis expert AI chat</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="phase-details hidden">
+                            <h3 class="section-title">Phase Details</h3>
+                            <p>This phase focuses on developing the Lead Report section of the dashboard and implementing process automation. We'll create visualizations and metrics to track lead volume from various sources, including Google (paid and organic), Meta platforms, and other channels. We'll also implement cost analysis to calculate metrics like cost per lead. Additionally, we'll develop scripting for validation and automatization of processes to improve efficiency. The chat functionality will include a data analysis expert AI that will help users better understand their data.</p>
+                            <h4>Deliverables:</h4>
+                            <ul>
+                                <li>Lead volume dashboard</li>
+                                <li>Source attribution tracking</li>
+                                <li>Channel breakdown visualizations</li>
+                                <li>Cost analysis components</li>
+                                <li>Validation and process automation scripts</li>
+                                <li>Data analysis expert AI chat functionality</li>
+                            </ul>
+                        </div>
+                        <div class="team-allocation hidden">
+                            <h3 class="section-title">Team Allocation</h3>
+                            <div class="team-members">
+                                <div class="team-member" data-member="alex">
+                                    <div class="member-avatar">AC</div>
+                                    <div class="member-info">
+                                        <div class="member-name">Alex Castro</div>
+                                        <div class="member-role">Project Manager, Developer, Data Architect</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dependency-arrow" data-connects="phase3-phase4">
+                    <div class="arrow-container">
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 4: Sales Report Development -->
+            <section id="phase4" class="timeline-phase" data-start-date="2025-05-25" data-end-date="2025-05-25">
+                <!-- Progress indicator moved inside card -->
+                <div class="cyber-card phase-card" data-aos="fade-up">
+                    <div class="phase-header">
+                        <div class="phase-title-container">
+                            <h2 class="phase-title">Phase 4: Sales Report & Data Integration</h2>
+                            <button class="expand-details-btn">Details +</button>
+                        </div>
+                        <div class="phase-time-container">
+                            <div class="phase-time">May 25</div>
+                            <div class="phase-dates">May 25, 2025</div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span class="progress-percentage">10%</span>
+                            <span class="progress-status">Planning</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="10"></div>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <div class="task-section">
+                            <h3 class="section-title">Tasks</h3>
+                            <ul class="task-list">
+                                <li class="task-item" data-assignee="gaojin">
+                                    <span class="task-text">Integrate GHL and POS sheet data</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Research cross-checking sales from POS with GHL opportunities</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="santiago">
+                                    <span class="task-text">Research gclid capture from IQW for Google Ad spend tracking</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="gaojin">
+                                    <span class="task-text">Create new sales and opportunities visualizations</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Enhance AI expert chat with additional functions</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="phase-details hidden">
+                            <h3 class="section-title">Phase Details</h3>
+                            <p>This phase focuses on the sales report and integrating data from GHL sheets and POS sheets. We'll research the possibility of cross-checking sales from POS with GHL opportunities to improve data accuracy. Additionally, we'll investigate if it's possible to capture the gclid from IQW to better understand Google Ad spend, though this is primarily research as it requires significant time and resources. While this research may be resource-intensive, it will provide greater clarity with Google Ad spend tracking where applicable.</p>
+                            <h4>Deliverables:</h4>
+                            <ul>
+                                <li>New graphs for sales visualizations and opportunities</li>
+                                <li>GHL and POS data integration</li>
+                                <li>Research findings on POS and GHL cross-checking</li>
+                                <li>Research report on gclid capture feasibility</li>
+                                <li>Additional functions for the AI expert chat</li>
+                            </ul>
+                        </div>
+                        <div class="team-allocation hidden">
+                            <h3 class="section-title">Team Allocation</h3>
+                            <div class="team-members">
+                                <div class="team-member" data-member="alex">
+                                    <div class="member-avatar">AC</div>
+                                    <div class="member-info">
+                                        <div class="member-name">Alex Castro</div>
+                                        <div class="member-role">Project Manager, Developer, Data Architect</div>
+                                    </div>
+                                </div>
+                                <div class="team-member" data-member="santiago">
+                                    <div class="member-avatar">SG</div>
+                                    <div class="member-info">
+                                        <div class="member-name">Santiago Garcia</div>
+                                        <div class="member-role">Automations Expert</div>
+                                    </div>
+                                </div>
+                                <div class="team-member" data-member="gaojin">
+                                    <div class="member-avatar">GJ</div>
+                                    <div class="member-info">
+                                        <div class="member-name">Gaojin</div>
+                                        <div class="member-role">Developer, Automations, Scripting</div>
+                                    </div>
+                                </div>
+                                <div class="team-member" data-member="evan">
+                                    <div class="member-avatar">ET</div>
+                                    <div class="member-info">
+                                        <div class="member-name">Evan Thompson</div>
+                                        <div class="member-role">Collaborator</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dependency-arrow" data-connects="phase4-phase5">
+                    <div class="arrow-container">
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 5: Master Overview Development -->
+            <section id="phase5" class="timeline-phase" data-start-date="2025-06-01" data-end-date="2025-06-01">
+                <!-- Progress indicator moved inside card -->
+                <div class="cyber-card phase-card" data-aos="fade-up">
+                    <div class="phase-header">
+                        <div class="phase-title-container">
+                            <h2 class="phase-title">Phase 5: Master Overview & System Enhancements</h2>
+                            <button class="expand-details-btn">Details +</button>
+                        </div>
+                        <div class="phase-time-container">
+                            <div class="phase-time">June 1</div>
+                            <div class="phase-dates">June 1, 2025</div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span class="progress-percentage">10%</span>
+                            <span class="progress-status">Planning</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="10"></div>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <div class="task-section">
+                            <h3 class="section-title">Tasks</h3>
+                            <ul class="task-list">
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Create aggregated lead metrics</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Implement comprehensive data summaries</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Build blended CPL calculations</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Implement bug tracking and theme improvements</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Create additional data visualizations</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Implement login authorization</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Research scalable backend system options</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                                <li class="task-item" data-assignee="alex">
+                                    <span class="task-text">Develop multi-store system architecture</span>
+                                    <span class="task-status pending">Pending</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="phase-details hidden">
+                            <h3 class="section-title">Phase Details</h3>
+                            <p>The final phase focuses on developing the Master Overview section of the dashboard while implementing significant system enhancements. We'll create comprehensive data summaries from all available data sources where possible. This phase also includes bug tracking, theme improvements, and additional data visualizations to enhance the user experience. We'll implement login authorization and research scalable backend system options to support future growth. Additionally, we'll develop a multi-store system architecture to accommodate multiple locations.</p>
+                            <h4>Deliverables:</h4>
+                            <ul>
+                                <li>Master overview dashboard</li>
+                                <li>Comprehensive data summaries</li>
+                                <li>Bug tracking system</li>
+                                <li>Enhanced theme and UI improvements</li>
+                                <li>Additional data visualizations</li>
+                                <li>Login authorization system</li>
+                                <li>Scalable backend system research report</li>
+                                <li>Multi-store system architecture</li>
+                                <li>Blended CPL calculations</li>
+                                <li>Final integration and testing</li>
+                            </ul>
+                        </div>
+                        <div class="team-allocation hidden">
+                            <h3 class="section-title">Team Allocation</h3>
+                            <div class="team-members">
+                                <div class="team-member" data-member="alex">
+                                    <div class="member-avatar">AC</div>
+                                    <div class="member-info">
+                                        <div class="member-name">Alex Castro</div>
+                                        <div class="member-role">Project Manager, Developer, Data Architect</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="cyber-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div id="cyber-terminal" class="cyber-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-title">DIRECT MESSAGE TO ALEX</div>
+                        <div class="terminal-controls">
+                            <button class="terminal-minimize">_</button>
+                            <button class="terminal-maximize">□</button>
+                            <button class="terminal-close">×</button>
+                        </div>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-output" id="terminal-output">
+                            <!-- Terminal output will be populated dynamically -->
+                        </div>
+                        <div class="terminal-input-line">
+                            <span class="terminal-prompt">USER@REPAIR_LIFT:~$</span>
+                            <input type="text" id="terminal-input" class="terminal-input" placeholder="Type your message here..." autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="terminal-status-bar">
+                        <div class="terminal-status">STATUS: ONLINE</div>
+                        <div class="terminal-connection">CONNECTION: SECURE</div>
+                        <div class="terminal-time" id="terminal-time">00:00:00</div>
+                    </div>
+                </div>
+                <p class="glow-text terminal-copyright">© 2023 Repair Lift Dashboard</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // Initialize EmailJS with your user ID
+        // Sign up at emailjs.com to get your user ID
+        (function() {
+            emailjs.init("nW9EYIaq-0hgj7Gxx");
+        })();
+    </script>
+    <script src="js/main.js"></script>
+    <script src="js/roadmap.js"></script>
+    <script src="js/terminal.js"></script>
+</body>
+</html>
