@@ -1,0 +1,1671 @@
+/* Roadmap specific styles */
+:root {
+    --neon-blue: #00f3ff;
+    --neon-purple: #9d00ff;
+    --dark-bg: #0a0a20;
+    --light-bg: #f0f8ff;
+    --cyber-glow: 0 0 10px var(--neon-blue);
+    --cyber-glow-purple: 0 0 10px var(--neon-purple);
+    --timeline-width: 6px;
+    --completed-color: #00ff7f;
+    --in-progress-color: #ffcc00;
+    --pending-color: #ff6b6b;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--dark-bg);
+    color: #fff;
+    overflow-x: hidden;
+    perspective: 1000px;
+    min-height: 100vh;
+    max-width: 100vw; /* Prevent horizontal overflow */
+    position: relative; /* Establish positioning context */
+}
+
+body.light-mode {
+    background-color: var(--light-bg);
+    color: #333;
+}
+
+/* Particles container for floating elements */
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Enhanced tech grid background with spherical effect */
+.tech-grid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%),
+        linear-gradient(90deg, rgba(0,243,255,0.15) 1px, transparent 1px) 0 0,
+        linear-gradient(rgba(0,243,255,0.15) 1px, transparent 1px) 0 0,
+        radial-gradient(circle at 30% 70%, rgba(157,0,255,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(0,243,255,0.05) 0%, transparent 50%);
+    background-size: 100% 100%, 40px 40px, 40px 40px, 600px 600px, 800px 800px;
+    z-index: -2;
+    opacity: 0.9;
+    transition: all 0.5s ease;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    animation: gridPulse 20s infinite alternate ease-in-out;
+    filter: blur(0.5px);
+}
+
+.light-mode .tech-grid-bg {
+    background:
+        radial-gradient(ellipse at center, rgba(240,248,255,0) 0%, rgba(240,248,255,0.6) 100%),
+        linear-gradient(90deg, rgba(0,100,255,0.2) 1px, transparent 1px) 0 0,
+        linear-gradient(rgba(0,100,255,0.2) 1px, transparent 1px) 0 0,
+        radial-gradient(circle at 30% 70%, rgba(100,0,200,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(0,119,204,0.08) 0%, transparent 50%);
+    background-size: 100% 100%, 40px 40px, 40px 40px, 600px 600px, 800px 800px;
+    opacity: 0.7;
+    filter: blur(0.5px);
+    border: 1px solid rgba(0,119,204,0.1); /* Add subtle border */
+}
+
+@keyframes gridPulse {
+    0% {
+        background-size: 100% 100%, 40px 40px, 40px 40px, 600px 600px, 800px 800px;
+        background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+        filter: blur(0.5px) brightness(1);
+    }
+    25% {
+        background-size: 100% 100%, 45px 45px, 45px 45px, 650px 650px, 850px 850px;
+        background-position: 0 0, 5px 5px, 5px 5px, -25px 25px, 25px -25px;
+        filter: blur(0px) brightness(1.1);
+    }
+    50% {
+        background-size: 100% 100%, 50px 50px, 50px 50px, 700px 700px, 900px 900px;
+        background-position: 0 0, 10px 10px, 10px 10px, -50px 50px, 50px -50px;
+        filter: blur(0px) brightness(1.2);
+    }
+    75% {
+        background-size: 100% 100%, 45px 45px, 45px 45px, 650px 650px, 850px 850px;
+        background-position: 0 0, 15px 15px, 15px 15px, -25px 25px, 25px -25px;
+        filter: blur(0px) brightness(1.1);
+    }
+    100% {
+        background-size: 100% 100%, 40px 40px, 40px 40px, 600px 600px, 800px 800px;
+        background-position: 0 0, 20px 20px, 20px 20px, 0 0, 0 0;
+        filter: blur(0.5px) brightness(1);
+    }
+}
+
+/* Header styles */
+.cyber-header {
+    background: rgba(10, 10, 32, 0.9);
+    border-bottom: 2px solid var(--neon-blue);
+    box-shadow: var(--cyber-glow);
+    padding: 1rem 0; /* Equal padding top and bottom */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.5s ease;
+    height: auto;
+}
+
+.light-mode .cyber-header {
+    background: rgba(240, 248, 255, 0.9);
+    border-bottom: 2px solid #0077cc;
+    box-shadow: 0 0 10px rgba(0, 119, 204, 0.5);
+    padding: 1rem 0; /* Equal padding top and bottom */
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    padding: 0.2rem 0; /* Equal padding top and bottom */
+}
+
+/* Animated title styles */
+.title-container {
+    width: 100%;
+    margin: 0.2rem 0; /* Equal margin top and bottom */
+    overflow: visible;
+    max-height: 50px; /* Slightly reduced height */
+    position: relative;
+}
+
+.title-svg {
+    overflow: visible;
+    height: 60px;
+    max-width: 100%; /* Ensure it doesn't overflow on mobile */
+}
+
+/* Base title text */
+.title-text-base {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 38px; /* Increased by 2px */
+    font-weight: bold;
+    fill: none;
+    stroke: var(--neon-blue);
+    stroke-width: 1;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    filter: url(#glow);
+}
+
+/* Traveling light overlay */
+.title-text-light {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 38px; /* Increased by 2px */
+    font-weight: bold;
+    fill: url(#traveling-light);
+    stroke: url(#traveling-light);
+    stroke-width: 2; /* Slightly thicker for better visibility */
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    opacity: 0.9;
+    mix-blend-mode: screen; /* This helps the light blend better */
+    pointer-events: none; /* Ensures it doesn't interfere with interactions */
+}
+
+/* Base subtitle text */
+.subtitle-text-base {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    fill: none;
+    stroke: var(--neon-blue);
+    stroke-width: 0.5; /* Thinner stroke for subtitle */
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    filter: url(#glow);
+    opacity: 0.9; /* Slightly less prominent than the main title */
+}
+
+/* Traveling light overlay for subtitle */
+.subtitle-text-light {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    fill: url(#traveling-light);
+    stroke: url(#traveling-light);
+    stroke-width: 0.5; /* Thinner stroke for subtitle */
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    opacity: 0.8;
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+.light-mode .title-text-base {
+    stroke: #0077cc;
+}
+
+.light-mode .title-text-light {
+    fill: url(#traveling-light-light);
+    stroke: url(#traveling-light-light);
+}
+
+.light-mode .subtitle-text-base {
+    stroke: #0077cc;
+    opacity: 0.9;
+}
+
+.light-mode .subtitle-text-light {
+    fill: url(#traveling-light-light);
+    stroke: url(#traveling-light-light);
+}
+
+.header-controls {
+    width: 100%;
+    position: relative;
+    height: auto; /* Allow height to adjust based on content */
+    padding: 0.5rem 0; /* Equal padding top and bottom */
+}
+
+.controls-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0;
+    height: 0;
+}
+
+.utility-controls {
+    display: flex;
+    gap: 0.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 110;
+    align-items: center;
+}
+
+/* Search container */
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    position: relative;
+}
+
+/* Cyber search input */
+.cyber-search {
+    background: rgba(0, 243, 255, 0.05);
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-family: 'Share Tech Mono', monospace;
+    width: 200px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.cyber-search:focus {
+    background: rgba(0, 243, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+    width: 250px;
+}
+
+.cyber-search::placeholder {
+    color: rgba(0, 243, 255, 0.5);
+}
+
+/* Light mode styles for search */
+.light-mode .cyber-search {
+    background: rgba(0, 119, 204, 0.05);
+    border: 1px solid #0077cc;
+    color: #0077cc;
+}
+
+.light-mode .cyber-search:focus {
+    background: rgba(0, 119, 204, 0.1);
+    box-shadow: 0 0 10px rgba(0, 119, 204, 0.3);
+}
+
+.light-mode .cyber-search::placeholder {
+    color: rgba(0, 119, 204, 0.5);
+}
+
+/* Search results highlight */
+.search-highlight {
+    background-color: rgba(0, 243, 255, 0.2);
+    border-radius: 2px;
+    padding: 0 2px;
+    box-shadow: 0 0 5px rgba(0, 243, 255, 0.5);
+    animation: highlightPulse 2s infinite;
+}
+
+.light-mode .search-highlight {
+    background-color: rgba(0, 119, 204, 0.2);
+    box-shadow: 0 0 5px rgba(0, 119, 204, 0.5);
+}
+
+@keyframes highlightPulse {
+    0%, 100% {
+        background-color: rgba(0, 243, 255, 0.2);
+    }
+    50% {
+        background-color: rgba(0, 243, 255, 0.4);
+    }
+}
+
+.utility-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.utility-button.compact {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 6px; /* Squares with rounded corners */
+    justify-content: center;
+    box-shadow: 0 0 8px rgba(0, 243, 255, 0.5);
+    transition: all 0.3s ease;
+    margin-right: 0.5rem;
+    border-width: 1px;
+    position: relative;
+    top: 5px;
+    /* Add a subtle background */
+    background: rgba(0, 243, 255, 0.05);
+}
+
+.light-mode .utility-button.compact {
+    box-shadow: 0 0 8px rgba(0, 119, 204, 0.3);
+    background: rgba(0, 119, 204, 0.05);
+}
+
+.utility-button.compact:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 12px rgba(0, 243, 255, 0.7);
+    background: rgba(0, 243, 255, 0.15);
+    border-color: var(--neon-blue);
+}
+
+.light-mode .utility-button.compact:hover {
+    box-shadow: 0 0 12px rgba(0, 119, 204, 0.5);
+    background: rgba(0, 119, 204, 0.15);
+    border-color: #0077cc;
+}
+
+.utility-button.compact.active {
+    background: rgba(0, 243, 255, 0.2);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+}
+
+.light-mode .utility-button.compact.active {
+    background: rgba(0, 119, 204, 0.2);
+    border-color: #0077cc;
+    box-shadow: 0 0 15px rgba(0, 119, 204, 0.6);
+}
+
+.button-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* SVG Icon Styles */
+.icon-svg {
+    fill: none;
+    stroke: var(--neon-blue);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 2px var(--neon-blue));
+    width: 18px;
+    height: 18px;
+}
+
+.light-mode .icon-svg {
+    stroke: #0077cc;
+    filter: drop-shadow(0 0 2px rgba(0, 119, 204, 0.7));
+}
+
+/* Theme Icon Specific Styles */
+.theme-icon .moon-icon {
+    fill: none;
+    stroke: var(--neon-blue);
+}
+
+.light-mode .theme-icon .moon-icon {
+    display: none;
+}
+
+.theme-icon .sun-icon {
+    display: none;
+}
+
+.light-mode .theme-icon .sun-icon {
+    display: block;
+    stroke: #0077cc;
+}
+
+/* Team Icon Specific Styles */
+.team-icon circle {
+    fill: rgba(0, 243, 255, 0.1);
+}
+
+.light-mode .team-icon circle {
+    fill: rgba(0, 119, 204, 0.1);
+}
+
+/* Terminal Icon Specific Styles */
+.terminal-icon rect {
+    fill: rgba(0, 243, 255, 0.1);
+}
+
+.light-mode .terminal-icon rect {
+    fill: rgba(0, 119, 204, 0.1);
+}
+
+/* Icon Animation on Hover */
+.utility-button:hover .icon-svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 3px var(--neon-blue));
+    stroke-width: 2;
+}
+
+.light-mode .utility-button:hover .icon-svg {
+    filter: drop-shadow(0 0 3px rgba(0, 119, 204, 0.9));
+    stroke-width: 2;
+}
+
+/* Active Button State */
+.utility-button.active .icon-svg {
+    stroke: var(--neon-blue);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 4px var(--neon-blue));
+}
+
+.light-mode .utility-button.active .icon-svg {
+    stroke: #0077cc;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 4px rgba(0, 119, 204, 0.9));
+}
+
+/* Specific fill styles for active state */
+.utility-button.active .team-icon circle,
+.utility-button.active .terminal-icon rect {
+    fill: rgba(0, 243, 255, 0.2);
+}
+
+.light-mode .utility-button.active .team-icon circle,
+.light-mode .utility-button.active .terminal-icon rect {
+    fill: rgba(0, 119, 204, 0.2);
+}
+
+/* Roadmap container */
+.roadmap-container {
+    padding: 2rem 0;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Date scale in header - Compact Top/Bottom Alignment Style */
+.date-scale-container {
+    position: relative;
+    width: 100%;
+    height: 30px; /* Match previous height */
+    padding: 0.2rem 1rem 0.3rem; /* More padding at bottom for progress bar */
+    background: rgba(0, 243, 255, 0.08);
+    border-radius: 6px;
+    border-left: 2px solid var(--neon-blue);
+    border-right: 2px solid var(--neon-purple);
+    transition: all 0.3s ease;
+    margin-top: 0;
+    overflow: visible;
+}
+
+.date-scale-container:hover {
+    background: rgba(0, 243, 255, 0.12);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+.light-mode .date-scale-container {
+    background: rgba(0, 119, 204, 0.08);
+    border-left: 2px solid #0077cc;
+    border-right: 2px solid #6600cc;
+}
+
+.light-mode .date-scale-container:hover {
+    background: rgba(0, 119, 204, 0.12);
+    box-shadow: 0 0 15px rgba(0, 119, 204, 0.2);
+}
+
+/* Timeline split line */
+.date-scale {
+    position: absolute;
+    width: 100%;
+    height: 2px; /* Just the line */
+    background-color: var(--neon-blue);
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: block;
+}
+
+.light-mode .date-scale {
+    background-color: #0077cc;
+}
+
+/* Date markers above the timeline */
+.date-marker {
+    position: absolute;
+    top: 0; /* Position at top */
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 0.7rem; /* Slightly smaller text */
+    color: var(--neon-blue);
+    transition: all 0.3s ease;
+    padding-top: 1px;
+    margin-top: -2px; /* Move text up slightly */
+}
+
+/* Short vertical line connecting date to timeline */
+.date-marker::after {
+    content: '';
+    position: absolute;
+    top: calc(100% + 2px); /* Add space between text and line */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 5px; /* Shorter connecting line */
+    background-color: var(--neon-blue);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.date-marker:hover {
+    color: #fff;
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.date-marker:hover::after {
+    height: 8px;
+    opacity: 1;
+    box-shadow: 0 0 5px var(--neon-blue);
+}
+
+.light-mode .date-marker {
+    color: #0077cc;
+}
+
+.light-mode .date-marker::after {
+    background-color: #0077cc;
+}
+
+.light-mode .date-marker:hover {
+    color: #000;
+}
+
+.light-mode .date-marker:hover::after {
+    box-shadow: 0 0 5px #0077cc;
+}
+
+.date-marker.active {
+    color: #fff;
+    font-weight: bold;
+}
+
+.light-mode .date-marker.active {
+    color: #0077cc;
+    font-weight: bold;
+}
+
+.date-marker.active::after {
+    height: 8px;
+    opacity: 1;
+    box-shadow: 0 0 8px var(--neon-blue);
+}
+
+.light-mode .date-marker.active::after {
+    box-shadow: 0 0 8px #0077cc;
+}
+
+/* Progress bar below the timeline */
+.date-progress-indicator {
+    position: absolute;
+    left: 0;
+    bottom: 2px; /* Position slightly above bottom of container */
+    height: 4px; /* Thinner progress bar */
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.5s ease;
+    box-shadow: 0 0 5px var(--neon-blue), 0 0 8px var(--neon-purple);
+}
+
+.light-mode .date-progress-indicator {
+    background: linear-gradient(90deg, #0077cc, #6600cc);
+    box-shadow: 0 0 5px #0077cc, 0 0 8px #6600cc;
+}
+
+/* Timeline track */
+.timeline-track {
+    position: relative;
+    padding: 0 2rem;
+    margin-top: 3rem;
+}
+
+/* Timeline SVG elements removed */
+
+/* Timeline phases */
+.timeline-phase {
+    position: relative;
+    margin-bottom: 6rem;
+    display: flex;
+    align-items: center;
+}
+
+.timeline-phase:nth-child(odd) .phase-card {
+    margin-left: auto;
+    margin-right: 4rem;
+}
+
+.timeline-phase:nth-child(even) .phase-card {
+    margin-right: auto;
+    margin-left: 4rem;
+}
+
+/* Center cards on mobile */
+@media (max-width: 992px) {
+    .timeline-phase:nth-child(odd) .phase-card,
+    .timeline-phase:nth-child(even) .phase-card {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+/* Milestone markers */
+.milestone-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Progress bar styles */
+.progress-container {
+    margin: 0.5rem 0 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 243, 255, 0.05);
+    border-radius: 5px;
+    border-left: 3px solid var(--neon-blue);
+}
+
+.light-mode .progress-container {
+    background: rgba(0, 119, 204, 0.05);
+    border-left: 3px solid #0077cc;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.progress-percentage {
+    font-weight: bold;
+    color: var(--neon-blue);
+}
+
+.light-mode .progress-percentage {
+    color: #0077cc;
+}
+
+.progress-status {
+    color: #aaa;
+}
+
+.light-mode .progress-status {
+    color: #666;
+}
+
+.progress-bar-container {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.light-mode .progress-bar-container {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0; /* Initial width, will be animated */
+    background: linear-gradient(90deg,
+        rgba(0, 243, 255, 0.7),
+        rgba(157, 0, 255, 0.7));
+    border-radius: 4px;
+    position: relative;
+    transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.light-mode .progress-bar {
+    background: linear-gradient(90deg,
+        rgba(0, 119, 204, 0.7),
+        rgba(75, 0, 130, 0.7));
+    box-shadow: 0 0 10px rgba(0, 119, 204, 0.3);
+}
+
+/* Progress bar animation */
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent);
+    animation: progressShimmer 2s infinite;
+}
+
+@keyframes progressShimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Phase cards */
+.phase-card {
+    width: 45%;
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--cyber-shadow);
+    position: relative;
+    z-index: 2;
+    transform-origin: center;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.5s ease,
+                background-color 0.5s ease,
+                height 0.3s ease; /* Add height transition for smoother animations */
+    overflow: hidden;
+    will-change: transform, box-shadow, height; /* Optimize for animations */
+}
+
+.phase-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0, 243, 255, 0.2),
+        transparent);
+    z-index: 1;
+    transition: all 0.8s ease;
+    pointer-events: none;
+}
+
+.phase-card:hover::before {
+    left: 100%;
+    transition: all 0.8s ease;
+}
+
+/* Enhanced card hover effect */
+.phase-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        0 15px 40px rgba(0, 0, 0, 0.2),
+        0 0 25px rgba(0, 243, 255, 0.6);
+    background-color: rgba(0, 243, 255, 0.03);
+}
+
+.light-mode .phase-card {
+    background: var(--light-card-bg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .phase-card::before {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0, 119, 204, 0.2),
+        transparent);
+}
+
+.light-mode .phase-card:hover {
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        0 15px 40px rgba(0, 0, 0, 0.1),
+        0 0 25px rgba(0, 119, 204, 0.4);
+    background-color: rgba(0, 119, 204, 0.02);
+}
+
+.phase-header {
+    border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.light-mode .phase-header {
+    border-bottom: 1px solid rgba(0, 119, 204, 0.3);
+}
+
+.phase-title-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.phase-title {
+    color: var(--neon-blue);
+    text-shadow: var(--cyber-glow);
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.light-mode .phase-title {
+    color: #0077cc;
+    text-shadow: none;
+}
+
+.expand-details-btn {
+    background: transparent;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+}
+
+.expand-details-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0, 243, 255, 0.2),
+        transparent);
+    transition: left 0.5s ease;
+}
+
+.expand-details-btn:hover {
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.expand-details-btn:hover::before {
+    left: 100%;
+}
+
+.light-mode .expand-details-btn {
+    border: 1px solid #0077cc;
+    color: #0077cc;
+    box-shadow: 0 0 5px rgba(0, 119, 204, 0.3);
+}
+
+.light-mode .expand-details-btn::before {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0, 119, 204, 0.2),
+        transparent);
+}
+
+.light-mode .expand-details-btn:hover {
+    box-shadow: 0 0 10px rgba(0, 119, 204, 0.5);
+}
+
+.phase-time-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.phase-time {
+    background: rgba(0, 243, 255, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--neon-blue);
+    margin-bottom: 0.5rem;
+}
+
+.light-mode .phase-time {
+    background: rgba(0, 119, 204, 0.1);
+    color: #0077cc;
+}
+
+.phase-dates {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.light-mode .phase-dates {
+    color: #666;
+}
+
+.phase-content {
+    padding: 1rem 0;
+}
+
+/* Section titles */
+.section-title {
+    font-size: 1.2rem;
+    color: var(--neon-blue);
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--neon-blue);
+    padding-left: 0.5rem;
+}
+
+.light-mode .section-title {
+    color: #0077cc;
+    border-left: 3px solid #0077cc;
+}
+
+/* Task list */
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-item {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.task-item:hover {
+    transform: translateX(5px);
+    background-color: rgba(0, 243, 255, 0.03);
+}
+
+.light-mode .task-item:hover {
+    background-color: rgba(0, 119, 204, 0.03);
+}
+
+.light-mode .task-item {
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.task-item::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--neon-blue);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.task-item:hover::before {
+    color: rgba(0, 243, 255, 1);
+    transform: translateX(2px);
+}
+
+.light-mode .task-item::before {
+    color: #0077cc;
+}
+
+.light-mode .task-item:hover::before {
+    color: rgba(0, 119, 204, 1);
+}
+
+.task-text {
+    flex: 1;
+    transition: color 0.3s ease;
+}
+
+.task-item:hover .task-text {
+    color: var(--neon-blue);
+}
+
+.light-mode .task-item:hover .task-text {
+    color: #0077cc;
+}
+
+.task-status {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.task-item:hover .task-status {
+    box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+}
+
+.light-mode .task-item:hover .task-status {
+    box-shadow: 0 0 5px rgba(0, 119, 204, 0.2);
+}
+
+.task-status.completed {
+    background: rgba(0, 255, 127, 0.2);
+    color: var(--completed-color);
+}
+
+.task-status.in-progress {
+    background: rgba(255, 204, 0, 0.2);
+    color: var(--in-progress-color);
+}
+
+.task-status.pending {
+    background: rgba(255, 107, 107, 0.2);
+    color: var(--pending-color);
+}
+
+.light-mode .task-status.completed {
+    background: rgba(0, 200, 100, 0.1);
+    color: #00a86b;
+}
+
+.light-mode .task-status.in-progress {
+    background: rgba(255, 180, 0, 0.1);
+    color: #cc9900;
+}
+
+.light-mode .task-status.pending {
+    background: rgba(255, 80, 80, 0.1);
+    color: #cc3333;
+}
+
+/* Hidden sections */
+.hidden {
+    display: none;
+}
+
+/* Phase details */
+.phase-details {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 243, 255, 0.05);
+    border-radius: 5px;
+    border-left: 3px solid var(--neon-blue);
+    transform-origin: top center;
+    will-change: height, opacity, transform;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    overflow: hidden; /* Ensure content doesn't overflow during animation */
+    backface-visibility: hidden; /* Prevent flickering during animations */
+    -webkit-font-smoothing: subpixel-antialiased; /* Improve text rendering during animations */
+}
+
+.light-mode .phase-details {
+    background: rgba(0, 119, 204, 0.05);
+    border-left: 3px solid #0077cc;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.phase-details p {
+    line-height: 1.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.phase-details h3, .phase-details h4 {
+    color: var(--neon-blue);
+    margin: 1rem 0 0.5rem;
+    display: inline-block;
+    transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.light-mode .phase-details h3, .light-mode .phase-details h4 {
+    color: #0077cc;
+}
+
+.phase-details ul {
+    padding-left: 1.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.phase-details li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Team allocation */
+.team-allocation {
+    margin-top: 1.5rem;
+}
+
+.team-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: rgba(0, 243, 255, 0.05);
+    border-radius: 5px;
+    position: relative;
+}
+
+.light-mode .team-member {
+    background: rgba(0, 119, 204, 0.05);
+}
+
+.member-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--neon-blue);
+    color: var(--dark-bg);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    box-shadow: var(--cyber-glow);
+}
+
+.light-mode .member-avatar {
+    background: #0077cc;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 119, 204, 0.5);
+}
+
+.member-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.member-name {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.member-role {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.light-mode .member-role {
+    color: #666;
+}
+
+/* Dependency arrows - Chevron style */
+.dependency-arrow {
+    position: absolute;
+    left: 50%;
+    bottom: -4rem;
+    width: 60px;
+    height: 80px;
+    transform: translateX(-50%);
+    z-index: 2;
+    overflow: visible;
+    opacity: 1;
+}
+
+/* Chevron arrow styling */
+.arrow-container {
+    width: 60px;
+    height: 80px;
+    position: relative;
+}
+
+.chevron {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-bottom: 4px solid var(--neon-blue);
+    border-right: 4px solid var(--neon-blue);
+    transform: rotate(45deg);
+    opacity: 0;
+    filter: drop-shadow(0 0 8px var(--neon-blue));
+    animation: chevron-fall 2.5s infinite;
+    left: 16px; /* Center in container */
+    transition: border-color 0.3s ease, filter 0.3s ease;
+}
+
+.chevron:nth-child(1) { animation-delay: 0s; }
+.chevron:nth-child(2) { animation-delay: 0.5s; }
+.chevron:nth-child(3) { animation-delay: 1s; }
+
+@keyframes chevron-fall {
+    0% {
+        top: -20px;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        top: 60px;
+        opacity: 0;
+    }
+}
+
+/* Hover effects */
+.dependency-arrow:hover .chevron {
+    border-bottom: 4px solid var(--neon-purple);
+    border-right: 4px solid var(--neon-purple);
+    filter: drop-shadow(0 0 12px var(--neon-purple));
+    animation-duration: 2s; /* Speed up on hover */
+}
+
+/* Light mode styles */
+.light-mode .chevron {
+    border-bottom: 4px solid #0077cc;
+    border-right: 4px solid #0077cc;
+    filter: drop-shadow(0 0 8px rgba(0, 119, 204, 0.7));
+}
+
+.light-mode .dependency-arrow:hover .chevron {
+    border-bottom: 4px solid #6600cc;
+    border-right: 4px solid #6600cc;
+    filter: drop-shadow(0 0 12px rgba(102, 0, 204, 0.7));
+    animation-duration: 2s; /* Speed up on hover */
+}
+
+/* Pulse glow animations removed as requested */
+
+/* Footer */
+.cyber-footer {
+    background: rgba(10, 10, 32, 0.9);
+    border-top: 2px solid var(--neon-blue);
+    box-shadow: 0 0 10px var(--neon-blue);
+    padding: 1.5rem 0;
+    text-align: center;
+    transition: all 0.5s ease;
+}
+
+.light-mode .cyber-footer {
+    background: rgba(240, 248, 255, 0.9);
+    border-top: 2px solid #0077cc;
+    box-shadow: 0 0 10px rgba(0, 119, 204, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .title-text {
+        font-size: 36px;
+    }
+
+    .subtitle-text {
+        font-size: 18px;
+    }
+
+    .controls-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    /* Ensure timeline phases are centered */
+    .timeline-phase {
+        flex-direction: column;
+        align-items: center; /* Center the cards */
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Center the timeline */
+    .timeline-line {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Center the milestone markers */
+    .milestone-marker {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Center the phase cards */
+    .phase-card {
+        width: 85%;
+        margin: 0 auto 2rem auto !important; /* Center the card with auto margins */
+        float: none !important; /* Remove any floating */
+    }
+
+    /* Center the dependency arrows */
+    .dependency-arrow {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Adjust header for better mobile layout */
+    .cyber-header {
+        padding: 2rem 0;
+    }
+
+    .header-content {
+        padding: 0.5rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* Move utility buttons below the title */
+    .utility-controls {
+        position: static;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Add more space between title and buttons */
+    .title-container {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .title-text {
+        font-size: 24px; /* Smaller font size */
+    }
+
+    .subtitle-text {
+        font-size: 14px; /* Smaller font size */
+    }
+
+    /* Adjust title SVG for mobile */
+    .title-svg {
+        height: 30px; /* Smaller height */
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 100%; /* Ensure it fits the container */
+    }
+
+    /* Adjust title text size for mobile */
+    .title-text-base, .title-text-light {
+        font-size: 18px; /* Increased by 2px from previous 16px */
+    }
+
+    /* Make phase cards full width on small mobile */
+    .phase-card {
+        width: 90%;
+        margin: 0 auto 2rem auto !important;
+        float: none !important;
+    }
+
+    /* Reduce header padding for mobile */
+    .cyber-header {
+        padding: 0.5rem 0; /* Much less padding for mobile */
+    }
+
+    /* Compact header layout for mobile */
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Increased gap for better separation */
+        align-items: center;
+    }
+
+    /* Make the title container more compact */
+    .title-container {
+        max-height: 40px;
+        margin-bottom: 0.5rem;
+        position: relative;
+    }
+
+    /* Move utility buttons below the title */
+    .utility-controls {
+        position: static;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem; /* More space below buttons */
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Add more space between utility controls and binary timeline */
+    .header-controls {
+        margin-top: 1.5rem; /* Push timeline down to avoid overlap */
+    }
+
+    /* Adjust utility buttons */
+    .utility-button.compact {
+        width: 32px; /* Slightly smaller buttons */
+        height: 32px;
+        margin: 0 0.3rem;
+    }
+
+    /* Compact binary timeline */
+    .binary-timeline {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        height: 40px; /* Shorter height */
+    }
+
+    .icon-svg {
+        width: 18px; /* Slightly larger icons */
+        height: 18px;
+    }
+
+    /* Ensure timeline elements are centered */
+    .timeline-line, .milestone-marker, .dependency-arrow {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Center navigation elements */
+    .timeline-nav, .utility-controls {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Ensure timeline phases are properly centered */
+    .timeline-phase {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Ensure the timeline track has proper spacing */
+    .timeline-track {
+        padding: 0 1rem;
+    }
+}
+
+/* Animation classes */
+.fade-in {
+    opacity: 0;
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* Pulse animation removed as requested */
+
+/* Glitch effect for text */
+.glitch-text {
+    position: relative;
+    color: var(--neon-blue);
+    text-shadow: var(--cyber-glow);
+}
+
+.light-mode .glitch-text {
+    color: #0077cc;
+    text-shadow: none;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitch-text::before {
+    color: var(--neon-purple);
+    z-index: -1;
+    text-shadow: var(--cyber-glow-purple);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    color: var(--neon-blue);
+    z-index: -2;
+    text-shadow: var(--cyber-glow);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.light-mode .glitch-text::before,
+.light-mode .glitch-text::after {
+    display: none;
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(2px, -2px);
+    }
+    40% {
+        transform: translate(2px, 2px);
+    }
+    60% {
+        transform: translate(-2px, -2px);
+    }
+    80% {
+        transform: translate(-2px, 2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Cyber button styles */
+.cyber-button {
+    background: transparent;
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.light-mode .cyber-button {
+    border: 2px solid #0077cc;
+    color: #0077cc;
+}
+
+.cyber-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+}
+
+.light-mode .cyber-button::before {
+    background: linear-gradient(90deg, transparent, rgba(0, 119, 204, 0.1), transparent);
+}
+
+.cyber-button:hover {
+    background: var(--neon-blue);
+    color: var(--dark-bg);
+    box-shadow: var(--cyber-glow);
+}
+
+.light-mode .cyber-button:hover {
+    background: #0077cc;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 119, 204, 0.5);
+}
+
+.cyber-button:hover::before {
+    left: 100%;
+}
+
+.cyber-button.active {
+    background: var(--neon-blue);
+    color: var(--dark-bg);
+    box-shadow: var(--cyber-glow);
+}
+
+.light-mode .cyber-button.active {
+    background: #0077cc;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 119, 204, 0.5);
+}
+
+/* Footer styles */
+.cyber-footer {
+    background: rgba(10, 10, 32, 0.9);
+    border-top: 2px solid var(--neon-blue);
+    box-shadow: var(--cyber-glow);
+    padding: 1rem 0;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 100;
+}
+
+.light-mode .cyber-footer {
+    background: rgba(240, 248, 255, 0.9);
+    border-top: 2px solid #0077cc;
+    box-shadow: 0 0 10px rgba(0, 119, 204, 0.5);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
